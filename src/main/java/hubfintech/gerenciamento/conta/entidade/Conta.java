@@ -1,12 +1,16 @@
 package hubfintech.gerenciamento.conta.entidade;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -14,62 +18,70 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Conta extends AbstractPersistable<Integer> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@NotEmpty
-	private String nome;
+    @NotEmpty
+    @Column(nullable = false)
+    private String nome;
 
-	@NotEmpty
-	private Date dataCriacao;
+    @NotNull
+    @Column(nullable = false)
+    private Date dataCriacao = new Date();
 
-	// @ManyToOne
-	// @JoinColumn(name = "contaMatrizId")
-	// private Conta contaMatriz;
+    @ManyToOne
+    @JoinColumn(name = "contaPaiId")
+    private Conta contaPai;
 
-	@ManyToOne
-	@JoinColumn(name = "contaPaiId")
-	private Conta contaPai;
+    @OneToMany(mappedBy = "contaPai", cascade = CascadeType.ALL)
+    private List<Conta> contasFiliais = new ArrayList<>();
 
-	@OneToMany(mappedBy = "contaPai")
-	private List<Conta> contasFiliais;
+    public void setId(Integer id) {
+        super.setId(id);
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
 
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
-	// public Conta getContaMatriz() {
-	// return contaMatriz;
-	// }
+    public Conta getContaPai() {
+        return contaPai;
+    }
 
-	// public void setContaMatriz(Conta contaMatriz) {
-	// this.contaMatriz = contaMatriz;
-	// }
+    public void setContaPai(Conta contaPai) {
+        this.contaPai = contaPai;
+    }
 
-	public Conta getContaPai() {
-		return contaPai;
-	}
+    public List<Conta> getContasFiliais() {
+        return contasFiliais;
+    }
 
-	public void setContaPai(Conta contaPai) {
-		this.contaPai = contaPai;
-	}
+    public void adicionarContaFilial(Conta contaFilial) {
+        contaFilial.setContaPai(this);
+        this.contasFiliais.add(contaFilial);
+    }
 
-	public List<Conta> getContasFiliais() {
-		return contasFiliais;
-	}
-
-	public void setContasFiliais(List<Conta> contasFiliais) {
-		this.contasFiliais = contasFiliais;
-	}
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Conta [nome=");
+        builder.append(nome);
+        builder.append(", dataCriacao=");
+        builder.append(dataCriacao);
+        builder.append(", contaPai=");
+        builder.append(contaPai);
+        builder.append("]");
+        return builder.toString();
+    }
 }
