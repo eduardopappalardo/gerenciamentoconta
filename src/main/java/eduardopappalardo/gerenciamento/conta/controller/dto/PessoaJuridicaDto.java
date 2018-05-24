@@ -6,58 +6,59 @@ import eduardopappalardo.gerenciamento.conta.entidade.PessoaJuridica;
 
 public class PessoaJuridicaDto extends PessoaDto {
 
-	private String cnpj;
-	private String razaoSocial;
-	private String nomeFantasia;
+    private String cnpj;
+    private String razaoSocial;
+    private String nomeFantasia;
 
-	public String getCnpj() {
-		return cnpj;
-	}
+    public String getCnpj() {
+        return cnpj;
+    }
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
-	public String getRazaoSocial() {
-		return razaoSocial;
-	}
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
 
-	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
-	}
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
 
-	public String getNomeFantasia() {
-		return nomeFantasia;
-	}
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
 
-	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
-	}
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
 
-	public static PessoaJuridicaDto converterParaDto(PessoaJuridica pessoaJuridica) {
-		PessoaJuridicaDto pessoaJuridicaDto = new PessoaJuridicaDto();
-		BeanUtils.copyProperties(pessoaJuridica, pessoaJuridicaDto);
-		pessoaJuridicaDto.setId(pessoaJuridica.getId());
-		return pessoaJuridicaDto;
-	}
+    public static PessoaJuridicaDto converterParaDto(PessoaJuridica pessoaJuridica) {
+        PessoaJuridicaDto pessoaJuridicaDto = new PessoaJuridicaDto();
+        BeanUtils.copyProperties(pessoaJuridica, pessoaJuridicaDto);
+        pessoaJuridicaDto.setId(pessoaJuridica.getId());
+        return pessoaJuridicaDto;
+    }
 
-	public PessoaJuridica converterParaModelo() {
-		PessoaJuridica pessoaJuridica = new PessoaJuridica();
-		BeanUtils.copyProperties(this, pessoaJuridica);
-		pessoaJuridica.setId(this.getId());
-		return pessoaJuridica;
-	}
+    @Override
+    public PessoaJuridica converterParaModelo() {
+        PessoaJuridica pessoaJuridica = new PessoaJuridica();
+        BeanUtils.copyProperties(this, pessoaJuridica);
+        pessoaJuridica.setId(this.getId());
+        return pessoaJuridica;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("PessoaJuridicaDto [cnpj=");
-		builder.append(cnpj);
-		builder.append(", razaoSocial=");
-		builder.append(razaoSocial);
-		builder.append(", nomeFantasia=");
-		builder.append(nomeFantasia);
-		builder.append("]");
-		return builder.toString();
-	}
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("PessoaJuridicaDto [cnpj=");
+        builder.append(cnpj);
+        builder.append(", razaoSocial=");
+        builder.append(razaoSocial);
+        builder.append(", nomeFantasia=");
+        builder.append(nomeFantasia);
+        builder.append("]");
+        return builder.toString();
+    }
 }

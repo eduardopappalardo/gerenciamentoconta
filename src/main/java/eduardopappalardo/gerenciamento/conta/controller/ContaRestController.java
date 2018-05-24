@@ -22,34 +22,36 @@ import eduardopappalardo.gerenciamento.conta.validacao.ValidacaoException;
 @RequestMapping(value = "/conta")
 public class ContaRestController {
 
-	@Autowired
-	private ContaService contaService;
+    @Autowired
+    private ContaService contaService;
 
-	@PostMapping
-	public ResponseEntity<?> salvarContaMatriz(@RequestBody ContaDto contaDto) {
-		try {
-			Conta conta = contaService.salvarContaMatriz(contaDto.converterParaModelo());
-			return ResponseEntity.ok(ContaDto.converterParaDto(conta));
-		} catch (ValidacaoException e) {
-			return ResponseEntity.badRequest().body(e.getMensagens());
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-		}
-	}
+    @PostMapping
+    public ResponseEntity<?> salvarContaMatriz(@RequestBody ContaDto contaDto) {
+        try {
+            Conta conta = contaService.salvarContaMatriz(contaDto.converterParaModelo());
+            return ResponseEntity.ok(ContaDto.converterParaDto(conta));
 
-	@GetMapping("{id}")
-	public ResponseEntity<ContaDto> consultarContaMatriz(@PathVariable("id") Integer id) {
-		Conta contaMatriz = contaService.consultarContaMatriz(id);
+        } catch (ValidacaoException e) {
+            return ResponseEntity.badRequest().body(e.getMensagens());
 
-		if (contaMatriz == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(ContaDto.converterParaDto(contaService.consultarContaMatriz(id)));
-	}
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
-	@GetMapping
-	public ResponseEntity<List<ContaDto>> listarContasMatriz() {
-		return ResponseEntity.ok(contaService.listarContasMatriz().stream().map(ContaDto::converterParaDto)
-				.collect(Collectors.toList()));
-	}
+    @GetMapping("{id}")
+    public ResponseEntity<ContaDto> consultarContaMatriz(@PathVariable("id") Integer id) {
+        Conta contaMatriz = contaService.consultarContaMatriz(id);
+
+        if (contaMatriz == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ContaDto.converterParaDto(contaService.consultarContaMatriz(id)));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ContaDto>> listarContasMatriz() {
+        return ResponseEntity.ok(contaService.listarContasMatriz().stream().map(ContaDto::converterParaDto)
+                .collect(Collectors.toList()));
+    }
 }

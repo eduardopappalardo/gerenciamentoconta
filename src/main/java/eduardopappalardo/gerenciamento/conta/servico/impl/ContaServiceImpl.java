@@ -19,56 +19,49 @@ import eduardopappalardo.gerenciamento.conta.validacao.Validador;
 @Service
 public class ContaServiceImpl implements ContaService {
 
-	@Autowired
-	private ContaRepository contaRepository;
+    @Autowired
+    private ContaRepository contaRepository;
 
-	@Autowired
-	private Validador validador;
+    @Autowired
+    private Validador validador;
 
-	@Override
-	@Transactional
-	public Conta salvarContaMatriz(Conta conta) {
-		this.popularNovaConta(conta);
-		this.navegarContasFiliais(conta, conta);
+    @Override
+    @Transactional
+    public Conta salvarContaMatriz(Conta conta) {
+        this.popularNovaConta(conta);
+        this.navegarContasFiliais(conta, conta);
 
-		validador.validar(conta);
+        validador.validar(conta);
 
-		if (conta.getPessoa() == null) {
-			throw new ValidacaoException("A conta matriz deve ter uma pessoa associada");
-		}
-		if (conta.getContaPai() != null) {
-			throw new ValidacaoException("A conta matriz não pode ter uma conta pai");
-		}
-		return contaRepository.save(conta);
-	}
+        if (conta.getContaPai() != null) {
+            throw new ValidacaoException("A conta matriz não pode ter uma conta pai");
+        }
+        return contaRepository.save(conta);
+    }
 
-	@Override
-	public Conta consultarContaMatriz(Integer id) {
-		return contaRepository.consultarContaMatrizEFiliais(id).stream().filter(c -> c.getContaPai() == null)
-				.findFirst().get();
-	}
+    @Override
+    public Conta consultarContaMatriz(Integer id) {
+        return contaRepository.consultarContaMatrizEFiliais(id).stream().filter(c -> c.getContaPai() == null)
+                .findFirst().get();
+    }
 
-	@Override
-	public List<Conta> listarContasMatriz() {
-		return contaRepository.findAll().stream().filter(c -> c.getContaPai() == null).collect(Collectors.toList());
-	}
+    @Override
+    public List<Conta> listarContasMatriz() {
+        return contaRepository.findAll().stream().filter(c -> c.getContaPai() == null).collect(Collectors.toList());
+    }
 
-	private void navegarContasFiliais(Conta conta, Conta contaMatriz) {
-		for (Conta contaFilial : conta.getContasFiliais()) {
-			this.popularNovaConta(contaFilial);
-			this.navegarContasFiliais(contaFilial, contaMatriz);
-			contaFilial.setContaMatriz(contaMatriz);
+    private void navegarContasFiliais(Conta conta, Conta contaMatriz) {
+        for (Conta contaFilial : conta.getContasFiliais()) {
+            this.popularNovaConta(contaFilial);
+            this.navegarContasFiliais(contaFilial, contaMatriz);
+            contaFilial.setContaMatriz(contaMatriz);
+        }
+    }
 
-			if (contaFilial.getPessoa() != null) {
-				throw new ValidacaoException("A conta filial não deve ter uma pessoa associada");
-			}
-		}
-	}
-
-	private void popularNovaConta(Conta conta) {
-		if (conta.getId() == null) {
-			conta.setDataCriacao(new Date());
-			conta.setSituacaoConta(SituacaoConta.ATIVA);
-		}
-	}
+    private void popularNovaConta(Conta conta) {
+        if (conta.getId() == null) {
+            conta.setDataCriacao(new Date());
+            conta.setSituacaoConta(SituacaoConta.ATIVA);
+        }
+    }
 }
