@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "73404b92-fe60-4dd5-984f-8cae9353fb68",
+		"name": "Hubfintech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listarContasMatriz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:80/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"conta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultarContaMatriz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:80/conta/1",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"conta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarContaMatriz",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"pessoa\": {\n        \"tipo\": \"PJ\",\n        \"id\": 1,\n        \"cnpj\": \"76.374.429/0001-00\",\n        \"razaoSocial\": \"Eduardo Corasdsadsp\",\n        \"nomeFantasia\": \"Eduardo Tecnologia\"\n    },\n    \"nome\": \"Conta Matriz 1\",\n    \"dataCriacao\": \"24/05/2018 02:08:39\",\n    \"situacaoConta\": \"ATIVA\",\n    \"contasFiliais\": [\n        {\n            \"id\": 2,\n            \"pessoa\": null,\n            \"nome\": \"Conta Filial 1.1\",\n            \"dataCriacao\": \"24/05/2018 02:08:39\",\n            \"situacaoConta\": \"ATIVA\",\n            \"contasFiliais\": [\n                {\n                    \"id\": 3,\n                    \"pessoa\": null,\n                    \"nome\": \"Conta Filddial 1.1.1\",\n                    \"dataCriacao\": \"24/05/2018 02:08:39\",\n                    \"situacaoConta\": \"ATIVA\",\n                    \"contasFiliais\": []\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"pessoa\": null,\n            \"nome\": \"Conta Filial 1.asdasd2\",\n            \"dataCriacao\": \"24/05/2018 02:08:39\",\n            \"situacaoConta\": \"ATIVA\",\n            \"contasFiliais\": [\n                {\n                    \"id\": 5,\n                    \"pessoa\": null,\n                    \"nome\": \"Conta Filial 1.2.1\",\n                    \"dataCriacao\": \"24/05/2018 02:08:39\",\n                    \"situacaoConta\": \"ATIVA\",\n                    \"contasFiliais\": []\n                },\n                {\n                    \"id\": 6,\n                    \"pessoa\": null,\n                    \"nome\": \"Conta Filial 1.2.2\",\n                    \"dataCriacao\": \"24/05/2018 02:08:39\",\n                    \"situacaoConta\": \"ATIVA\",\n                    \"contasFiliais\": []\n                }\n            ]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:80/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"conta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
