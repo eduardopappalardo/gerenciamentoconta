@@ -12,4 +12,6 @@ public interface ContaService {
 
     public List<Conta> listarContasMatriz();
 
+    public Conta consultarConta(Integer id);
+
 }

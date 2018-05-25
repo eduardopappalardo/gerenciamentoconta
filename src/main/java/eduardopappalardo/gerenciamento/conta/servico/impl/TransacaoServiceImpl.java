@@ -1,6 +1,7 @@
 package eduardopappalardo.gerenciamento.conta.servico.impl;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +21,21 @@ public class TransacaoServiceImpl implements TransacaoService {
     private ContaService contaService;
 
     @Override
-    public void transferirValor(Conta contaOrigem, Conta contaDestino, BigDecimal valor) {
-        // TODO Auto-generated method stub
-
+    public void transferirValor(Integer contaOrigemId, Integer contaDestinoId, BigDecimal valor) {
+        Conta contaOrigem = contaService.consultarConta(contaOrigemId);
+        Conta contaDestino = contaService.consultarConta(contaDestinoId);
+        boolean isContaDestinoFilialContaOrigem = isContaDestinoFilialContaOrigem(contaOrigem, contaDestino);
     }
 
     @Override
-    public void efetuarAporte(Conta contaMatriz, BigDecimal valor, String codigoAporte) {
-        // TODO Auto-generated method stub
+    public void efetuarAporte(Integer contaMatrizId, BigDecimal valor, String codigoAporte) {
+    }
 
+    private boolean isContaDestinoFilialContaOrigem(Conta conta, Conta contaDestino) {
+        List<Conta> contasFiliais = conta.getContasFiliais();
+
+        for (Conta contaFilial : contasFiliais) {
+        }
+        return false;
     }
 }

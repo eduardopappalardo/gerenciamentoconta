@@ -3,7 +3,6 @@ package eduardopappalardo.gerenciamento.conta.servico.impl;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -48,7 +47,12 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public List<Conta> listarContasMatriz() {
-        return contaRepository.findAll().stream().filter(c -> c.getContaPai() == null).collect(Collectors.toList());
+        return contaRepository.listarContasMatriz();
+    }
+
+    @Override
+    public Conta consultarConta(Integer id) {
+        return contaRepository.findOne(id);
     }
 
     private void navegarContasFiliais(Conta conta, Conta contaMatriz) {
