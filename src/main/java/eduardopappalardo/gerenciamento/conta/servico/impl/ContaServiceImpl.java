@@ -1,5 +1,6 @@
 package eduardopappalardo.gerenciamento.conta.servico.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,6 +63,7 @@ public class ContaServiceImpl implements ContaService {
         if (conta.getId() == null) {
             conta.setDataCriacao(new Date());
             conta.setSituacaoConta(SituacaoConta.ATIVA);
+            conta.setSaldo(BigDecimal.ZERO);
         }
     }
 }

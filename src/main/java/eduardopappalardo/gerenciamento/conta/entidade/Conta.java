@@ -1,5 +1,6 @@
 package eduardopappalardo.gerenciamento.conta.entidade;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +53,10 @@ public class Conta extends AbstractPersistable<Integer> {
 
     @OneToMany(mappedBy = "contaPai", cascade = CascadeType.ALL)
     private List<Conta> contasFiliais = new ArrayList<>();
+
+    @NotNull
+    @Column(nullable = false)
+    public BigDecimal saldo;
 
     public void setId(Integer id) {
         super.setId(id);
@@ -114,15 +119,33 @@ public class Conta extends AbstractPersistable<Integer> {
         this.contasFiliais.add(contaFilial);
     }
 
+    public BigDecimal getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Conta [nome=");
+        builder.append("Conta [pessoa=");
+        builder.append(pessoa);
+        builder.append(", nome=");
         builder.append(nome);
         builder.append(", dataCriacao=");
         builder.append(dataCriacao);
+        builder.append(", situacaoConta=");
+        builder.append(situacaoConta);
+        builder.append(", contaMatriz=");
+        builder.append(contaMatriz);
         builder.append(", contaPai=");
         builder.append(contaPai);
+        builder.append(", contasFiliais=");
+        builder.append(contasFiliais);
+        builder.append(", saldo=");
+        builder.append(saldo);
         builder.append("]");
         return builder.toString();
     }
