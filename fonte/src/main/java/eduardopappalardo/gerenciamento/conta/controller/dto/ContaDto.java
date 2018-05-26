@@ -1,5 +1,6 @@
 package eduardopappalardo.gerenciamento.conta.controller.dto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ public class ContaDto {
 	private Integer id;
 	private PessoaDto pessoa;
 	private String nome;
+	public BigDecimal saldo;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataCriacao;
@@ -45,6 +47,14 @@ public class ContaDto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public BigDecimal getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(BigDecimal saldo) {
+		this.saldo = saldo;
 	}
 
 	public Date getDataCriacao() {

@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "512e3e5f-674a-471d-84ea-506aca1f1310",
+		"name": "Hubfintech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listarContasMatriz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:80/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"conta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultarContaPorCodigo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:80/conta/1",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"conta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarConta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"pessoa\": {\n        \"tipo\": \"PJ\",\n        \"id\": 1,\n        \"cnpj\": \"76.374.429/0001-00\",\n        \"razaoSocial\": \"Eduardo Corp\",\n        \"nomeFantasia\": \"Eduardo Tecnologia\"\n    },\n    \"nome\": \"Conta Matriz 1\",\n    \"saldo\": 0,\n    \"dataCriacao\": \"26/05/2018 18:03:25\",\n    \"situacaoConta\": \"ATIVA\",\n    \"contasFiliais\": [\n        {\n            \"id\": 2,\n            \"pessoa\": {\n                \"tipo\": \"PF\",\n                \"id\": 2,\n                \"cpf\": \"123.456.789-10\",\n                \"nomeCompleto\": \"Eduardo\",\n                \"dataNascimento\": \"26/05/2018\"\n            },\n            \"nome\": \"Conta Filial 1.1\",\n            \"saldo\": 0,\n            \"dataCriacao\": \"26/05/2018 18:03:25\",\n            \"situacaoConta\": \"ATIVA\",\n            \"contasFiliais\": [\n                {\n                    \"id\": 3,\n                    \"pessoa\": {\n                        \"tipo\": \"PF\",\n                        \"id\": 2,\n                        \"cpf\": \"123.456.789-10\",\n                        \"nomeCompleto\": \"Eduardo\",\n                        \"dataNascimento\": \"26/05/2018\"\n                    },\n                    \"nome\": \"Conta Filial 1.1.1\",\n                    \"saldo\": 0,\n                    \"dataCriacao\": \"26/05/2018 18:03:25\",\n                    \"situacaoConta\": \"ATIVA\",\n                    \"contasFiliais\": []\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"pessoa\": {\n                \"tipo\": \"PF\",\n                \"id\": 2,\n                \"cpf\": \"123.456.789-10\",\n                \"nomeCompleto\": \"Eduardo\",\n                \"dataNascimento\": \"26/05/2018\"\n            },\n            \"nome\": \"Conta Filial 1.2\",\n            \"saldo\": 0,\n            \"dataCriacao\": \"26/05/2018 18:03:25\",\n            \"situacaoConta\": \"ATIVA\",\n            \"contasFiliais\": [\n                {\n                    \"id\": 5,\n                    \"pessoa\": {\n                        \"tipo\": \"PF\",\n                        \"id\": 2,\n                        \"cpf\": \"123.456.789-10\",\n                        \"nomeCompleto\": \"Eduardo\",\n                        \"dataNascimento\": \"26/05/2018\"\n                    },\n                    \"nome\": \"Conta Filial 1.2.1\",\n                    \"saldo\": 0,\n                    \"dataCriacao\": \"26/05/2018 18:03:25\",\n                    \"situacaoConta\": \"ATIVA\",\n                    \"contasFiliais\": []\n                },\n                {\n                    \"id\": 6,\n                    \"pessoa\": {\n                        \"tipo\": \"PF\",\n                        \"id\": 2,\n                        \"cpf\": \"123.456.789-10\",\n                        \"nomeCompleto\": \"Eduardo\",\n                        \"dataNascimento\": \"26/05/2018\"\n                    },\n                    \"nome\": \"Conta Filial 1.2.2\",\n                    \"saldo\": 0,\n                    \"dataCriacao\": \"26/05/2018 18:03:25\",\n                    \"situacaoConta\": \"ATIVA\",\n                    \"contasFiliais\": []\n                }\n            ]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:80/conta",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"conta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvarPessoa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"tipo\":\"PJ\",\r\n   \"id\":1,\r\n   \"cnpj\":\"76.374.429/0001-00\",\r\n   \"razaoSocial\":\"Eduardo Corp\",\r\n   \"nomeFantasia\":\"Eduardo Tecnologia\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:80/pessoa",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"pessoa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarTransacoes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:80/transacao",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"transacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "efetuarAporte",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"contaDestinoId\":1,\r\n   \"valorTransacao\":1500,\r\n   \"codigoAporte\":\"AAABBB\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:80/transacao/efetuar-aporte",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"transacao",
+						"efetuar-aporte"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "estornarAporte",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"codigoAporte\":\"AAABBB\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:80/transacao/estornar-aporte",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"transacao",
+						"estornar-aporte"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "efetuarTransferencia",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"contaOrigemId\":1,\r\n   \"contaDestinoId\":2,\r\n   \"valorTransacao\":10.5\r\n}"
+				},
+				"url": {
+					"raw": "localhost:80/transacao/efetuar-transferencia",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"transacao",
+						"efetuar-transferencia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "estornarTransferencia",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"transacaoId\":2\r\n}"
+				},
+				"url": {
+					"raw": "localhost:80/transacao/estornar-transferencia",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"transacao",
+						"estornar-transferencia"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -81,6 +81,6 @@ public class MassaDeDados {
         contaFilial12.adicionarContaFilial(contaFilial121);
         contaFilial12.adicionarContaFilial(contaFilial122);
 
-        contaService.salvarContaMatriz(contaMatriz);
+        contaService.salvar(contaMatriz);
     }
 }
