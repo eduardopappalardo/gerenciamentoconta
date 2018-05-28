@@ -1,0 +1,6 @@
+1) Solução em Spring Boot, com servidor integrado e banco de dados em memória (H2), para poder ser executado em qualquer lugar. Basta executar a classe 'eduardopappalardo.gerenciamento.conta.GerenciamentoContaApplication'. Uma massa de dados para uso é criada na inicialização da aplicação e será aberto um visualizar do banco de dados.
+2) Solução de banco de dados com Spring Data JPA, bastando mudar apenas o provedor caso queira executar com MySQL, SQL Server ou outro relacional
+3) Toda a API Rest está configurada para uso na coleção do Postman (www.getpostman.com). Basta importar o arquivo 'Hubfintech.postman_collection.json' na pasta 'docs'
+4) Foco em qualidade de código. Precisa melhorar performance com banco de dados pois muitas querys sendo executadas devido a hierarquia de 'Conta'. Não tive tempo para melhorar. Para melhorar, poderia mudar a forma de consulta e montar os objetos manualmente, do lado da aplicação, ou utilizar uma solução de cache para evitar tantas consultas.
+5) Índices padrão para PK e FK são suficientes, adicionalmente incluiria um índice para 'códigoAporte' em 'Transacao', já que existe uma consulta por esse campo.
+6) Espero que gostem :)
