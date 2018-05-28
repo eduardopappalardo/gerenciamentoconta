@@ -39,9 +39,9 @@ public class ContaRestController {
 
 	@GetMapping("{id}")
 	public ResponseEntity<ContaDto> consultarPorId(@PathVariable("id") Integer id) {
-		Conta contaMatriz = contaService.consultarPorId(id);
+		Conta conta = contaService.consultarPorId(id);
 
-		if (contaMatriz == null) {
+		if (conta == null) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(ContaDto.converterParaDto(contaService.consultarPorId(id)));

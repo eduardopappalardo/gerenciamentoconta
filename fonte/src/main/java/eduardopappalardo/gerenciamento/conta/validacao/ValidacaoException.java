@@ -21,10 +21,4 @@ public class ValidacaoException extends RuntimeException {
 	public List<String> getMensagens() {
 		return mensagens;
 	}
-
-	public static void lancarExcecaoSeHouverErros(List<String> mensagens) {
-		if (!mensagens.isEmpty()) {
-			throw new ValidacaoException(mensagens);
-		}
-	}
 }
